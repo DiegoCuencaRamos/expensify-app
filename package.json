@@ -10,7 +10,7 @@
     "test-watch": "jest --config=jest.config.js --watchAll",
     "test-update": "jest --config=jest.config.js -u",
     "start": "node server/server.js",
-    "heroku-postbiuld": "npm run webpack:prod"
+    "heroku-postbuild": "npm run webpack:prod"
   },
   "keywords": [],
   "author": "",
