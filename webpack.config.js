@@ -1,51 +1,78 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-module.exports = {
-    mode: 'development',
-    entry: './src/app.js',
-    output: {
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'public'),
-    },
-    module: {
-        rules: [
-            {
-                test: /\.m?js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        "presets": [
-                            [
-                                "@babel/env",
-                                {
-                                    "targets": {"node": "current"},
-                                    "useBuiltIns": "usage",
-                                    "corejs": { "version": 3},
-                                }
-                            ],
-                                "@babel/preset-react"
-                            ],
-                        "plugins": ["@babel/plugin-proposal-object-rest-spread"/*, "@babel/plugin-transform-modules-commonjs"*/]
+module.exports = (env) => {
+    const prodMode = env !== 'production';
+
+    console.log(prodMode, MiniCssExtractPlugin.loader);
+
+    return {
+        mode: prodMode ? 'production' : 'development',
+        entry: './src/app.js',
+        output: {
+            filename: 'main.js',
+            path: path.resolve(__dirname, 'public'),
+        },
+        plugins: [new MiniCssExtractPlugin()],
+        module: {
+            rules: [
+                {
+                    test: /\.m?js$/,
+                    exclude: /(node_modules|bower_components)/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            "presets": [
+                                [
+                                    "@babel/env",
+                                    {
+                                        "targets": {"node": "current"},
+                                        "useBuiltIns": "usage",
+                                        "corejs": { "version": 3},
+                                    }
+                                ],
+                                    "@babel/preset-react"
+                                ],
+                            "plugins": ["@babel/plugin-proposal-object-rest-spread"/*, "@babel/plugin-transform-modules-commonjs"*/]
+                        }
                     }
-                }
-            },
-            {
-                test: /\.s?[ac]ss$/i,
-                use: [
-                  // Creates `style` nodes from JS strings
-                  "style-loader",
-                  // Translates CSS into CommonJS
-                  "css-loader",
-                  // Compiles Sass to CSS
-                  "sass-loader",
-                ],
-              },
-        ],
-    },
-    devtool: 'eval-source-map',
-    devServer: {
-        contentBase: './public',
-        historyApiFallback: true
-    },
+                },
+                {
+                    test: /\.s?[ac]ss$/i,
+                    use: [
+                        // Creates `style` nodes from JS strings
+                        prodMode ? MiniCssExtractPlugin.loader : 'style-loader',
+                        // Translates CSS into CommonJS
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        // Compiles Sass to CSS
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                    ],
+                },
+            ],
+        },
+        // running only in Production mode
+        /*optimization: {
+            minimizer: [
+              new CssMinimizerPlugin({
+                sourceMap: true,
+              }),
+            ],
+          },*/
+        devtool: prodMode ? 'source-map' : 'inline-source-map',
+        devServer: {
+            contentBase: './public',
+            historyApiFallback: true
+        },
+    };
 };
