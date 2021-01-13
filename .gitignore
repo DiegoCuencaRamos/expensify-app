@@ -1,2 +1,7 @@
 node_modules/
 yarn.lock
+public/main.css
+public/main.css.map
+public/main.js
+public/main.js.LICENSE.txt
+public/main.js.map
