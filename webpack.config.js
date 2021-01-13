@@ -5,14 +5,14 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 module.exports = (env) => {
     const prodMode = env !== 'production';
 
-    console.log(prodMode, MiniCssExtractPlugin.loader);
+    console.log(prodMode, path.resolve(__dirname, 'public', 'dist'));
 
     return {
         mode: prodMode ? 'production' : 'development',
         entry: './src/app.js',
         output: {
             filename: 'main.js',
-            path: path.resolve(__dirname, 'public'),
+            path: path.resolve(__dirname, 'public', 'dist'),
         },
         plugins: [new MiniCssExtractPlugin()],
         module: {
@@ -71,8 +71,9 @@ module.exports = (env) => {
           },*/
         devtool: prodMode ? 'source-map' : 'inline-source-map',
         devServer: {
-            contentBase: './public',
-            historyApiFallback: true
+            contentBase: path.join(__dirname, 'public'),
+            historyApiFallback: true,
+            publicPath: '/dist/'
         },
     };
 };
