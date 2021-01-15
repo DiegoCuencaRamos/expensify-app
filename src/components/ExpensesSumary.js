@@ -16,8 +16,6 @@ export const ExpensesSumary = ({ expenseCount, expensesTotal }) => {
 };
 
 const mapStateToProps = (state) => {
-    console.log('ExpensesSumary state:', state)
-
     const visibleExpenses = selectExpenses(state.expenses, state.filters);
 
     return {
@@ -25,8 +23,6 @@ const mapStateToProps = (state) => {
         expensesTotal: selectExpensesTotal(visibleExpenses)
     } 
 };
-
-console.log(connect(mapStateToProps)(ExpensesSumary))
 
 export default connect(mapStateToProps)(ExpensesSumary);
 
