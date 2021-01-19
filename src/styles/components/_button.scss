@@ -1,0 +1,21 @@
+@use '../base/settings';
+
+.button {
+    color: #ffffff;
+    background-color: settings.$blue;
+    font-size: settings.$font-size-large;
+    font-weight: 300;
+    padding: settings.$s-size;
+    border: none;
+    display: inline-block;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.button--link {
+    background: none;
+}
+
+.button-secondary {
+    background: #888;
+}

@@ -1,0 +1,7 @@
+@use '../base/settings';
+
+.content-container {
+    margin: auto;
+    padding: 0 settings.$m-size;
+    max-width: 80rem;
+}

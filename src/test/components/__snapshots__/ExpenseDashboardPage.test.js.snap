@@ -3,7 +3,7 @@
 exports[`should render ExpenseDashboardPage 1`] = `
 <div>
   <ExpensesSumary />
-  <Connect(ExpenseList) />
   <Connect(ExpenseListFilters) />
+  <Connect(ExpenseList) />
 </div>
 `;

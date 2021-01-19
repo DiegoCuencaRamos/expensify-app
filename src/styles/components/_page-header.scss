@@ -1,0 +1,19 @@
+@use '../base/settings';
+
+.page-header {
+    background-color: settings.$off-white;
+    padding: settings.$l-size 0;
+    margin-bottom: settings.$l-size;
+}
+
+.page-header_actions {
+    margin-top: settings.$m-size;
+}
+
+.page-header__title {
+    margin: 0;
+    font-weight: 300;
+    span {
+        font-weight: 700;
+    }
+}

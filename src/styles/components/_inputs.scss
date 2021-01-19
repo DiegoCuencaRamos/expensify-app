@@ -1,0 +1,17 @@
+@use '../base/settings';
+
+.text-input {
+    border: 1px solid #cacccd;
+    height: 50px;
+    padding: settings.$s-size;
+    font-size: settings.$font-size-large;
+    font-weight: 300;
+}
+.select {
+    @extend .text-input;
+}
+
+.textarea {
+    @extend .text-input;
+    height: 10rem;
+}

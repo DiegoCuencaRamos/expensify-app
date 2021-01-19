@@ -1,0 +1,65 @@
+@use '../base/settings';
+
+.list-header {
+    background: settings.$off-white;
+    border: 1px solid darken(settings.$off-white, 7%);
+    color: settings.$grey;
+    display: flex;
+    justify-content: space-between;
+    padding: settings.$s-size settings.$m-size;
+}
+
+.list-body {
+    margin-bottom: settings.$m-size;
+    @media (min-width: settings.$desktop-breakpoint) {
+        margin-bottom: settings.$l-size;
+    }
+}
+
+.list-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid darken(settings.$off-white, 7%);
+    border-top: none;
+    color: settings.$dark-grey;
+    padding: settings.$s-size;
+    text-decoration: none;
+    transition: background .3s ease;
+    &:hover {
+        background: settings.$off-white;
+    }
+    @media (min-width: settings.$desktop-breakpoint) {
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: settings.$m-size;
+    }
+}
+
+.list-item--message {
+    align-items: center;
+    color: settings.$grey;
+    justify-content: center;
+    padding: settings.$s-size;
+    &:hover {
+        background: none;
+    }
+}
+
+.list-item__title {
+    margin: 0;
+    word-break: break-all;
+}
+
+.list-item__subtitle {
+    color: settings.$grey;
+    font-size: settings.$font-size-small;
+}
+
+.list-item__data {
+    margin: settings.$s-size 0 0 0;
+    @media (min-width: settings.$desktop-breakpoint) {
+        margin: 0;
+        padding-left: settings.$s-size;
+    }
+}

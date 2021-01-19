@@ -1,0 +1,25 @@
+@use '../base/settings';
+
+.box-layout {
+    align-items: center;
+    background-color: #444444;
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+}
+
+.box-layout__box {
+    background-color: fade-out($color: white, $amount: .15);
+    border-radius: 3px;
+    padding: settings.$l-size settings.$m-size;
+    text-align: center;
+    width: 25rem,
+}
+
+.box-layout__title {
+    margin: 0 0 settings.$m-size 0;
+    line-height: 1;
+}
+

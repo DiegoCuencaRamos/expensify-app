@@ -1,0 +1,13 @@
+@use '../base/settings';
+
+.show-for-mobile {
+    @media (min-width: settings.$desktop-breakpoint) {
+        display: none;
+    }
+}
+
+.show-for-desktop {
+    @media (max-width: settings.$desktop-breakpoint) {
+        display: none;
+    }
+}
